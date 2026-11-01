@@ -16,11 +16,17 @@ SOSP 2019
 
 ## What the paper is about
 
-The paper measures how long basic Linux operations take, for example system calls and context switches. The authors use their benchmark, LEBench, on Linux 3.0 through 4.20. Figure 1 shows that many of these operations became slower. They also say that 11 kernel changes explain most of the slowdown.
+The paper measures how long basic Linux operations take, for example system calls, page faults, and context switches. The authors use their benchmark, LEBench, on Linux 3.0 through 4.20, and compare each version with Linux 4.0. Figure 1 shows that many of these operations became slower. One example in the paper is `select`, which became about twice as slow. They also say that 11 kernel changes explain most of the slowdown. Those changes include security patches, such as Meltdown and Spectre, and a few configuration choices. Later in the paper they turn the 11 changes off and report faster Redis, Apache, and Nginx runs.
+
+The original experiments used Ubuntu 16.04 on an HP server with an Intel Xeon E5-2630 v3 and 128 GB of memory. Our machines are different, so the numbers will not match exactly. I will still use the same benchmark and the same kind of comparison: our time versus the number in the paper.
+
+## What I plan to reproduce
+
+I will start with Figure 1, because it is the main result. Running all 36 kernel versions is too much for this course, so I plan to pick a few versions, including 4.0, and a few tests such as `select`, `mmap`, and context switch. Each test should be run at least three times, and I will write down the average. If that works, I can look at one of the 11 changes and see whether turning it off changes the result.
 
 ## This week
 
-This week I created the repository and wrote this README. I have not run the benchmark yet, so there are no results.
+This week I created the repository, recorded the paper and the original code commit, and wrote this README. I have not installed a new kernel and I have not run the benchmark yet, so there are no results. Next week I will clone LEBench and try it on the Linux version already installed on the machine.
 
 ## How to run the original code
 
