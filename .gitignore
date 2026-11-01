@@ -1,25 +1,6 @@
-# Upstream clone and kernel trees
 third_party/
-linux-stable/
-*.deb
-
-# LEBench outputs
+*.o
 *.csv
 *.out
-results/raw/
-
-# Build
-*.o
-*.a
-*.so
-*.d
 __pycache__/
-*.pyc
-.venv/
-venv/
-
-# Local environment dumps and secrets
-logs/
 .env
-*.pem
-credentials.json
