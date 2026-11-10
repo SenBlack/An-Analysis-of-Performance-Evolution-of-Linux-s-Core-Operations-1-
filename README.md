@@ -1,6 +1,6 @@
 # CS340 Paper Reproduction
 
-Name: 申伟华, 唐诗恒 (TANG SHIHENG)
+Name: 申伟华, 唐诗恒
 Student ID: 1240021926, 1240037734
 
 ## Paper
