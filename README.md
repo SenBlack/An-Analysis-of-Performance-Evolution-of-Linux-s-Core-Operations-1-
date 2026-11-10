@@ -1,6 +1,7 @@
 # CS340 Paper Reproduction
 
 Name: 申伟华, 唐诗恒
+
 Student ID: 1240021926, 1240037734
 
 ## Paper
@@ -24,7 +25,7 @@ The original experiments used Ubuntu 16.04 on an HP server with an Intel Xeon E5
 
 I will start with Figure 1, because it is the main result. Running all 36 kernel versions is too much for this course, so I plan to pick a few versions, including 4.0, and a few tests such as `select`, `mmap`, and context switch. Each test should be run at least three times, and I will write down the average. If that works, I can look at one of the 11 changes and see whether turning it off changes the result.
 
-## First week (11/1)
+## First week (11/1-11/9)
 
 This week I created the repository, recorded the paper and the original code commit, and wrote this README. I have not installed a new kernel and I have not run the benchmark yet, so there are no results. Next week I will clone LEBench and try it on the Linux version already installed on the machine.
 
