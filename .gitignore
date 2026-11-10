@@ -1,6 +1,9 @@
 third_party/
 *.o
-*.csv
 *.out
 __pycache__/
 .env
+
+# Stray CSV files stay untracked. The LEBench logs for the report are kept.
+*.csv
+!week2/results/*.csv

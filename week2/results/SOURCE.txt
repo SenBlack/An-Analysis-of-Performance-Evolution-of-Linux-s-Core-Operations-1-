@@ -1,0 +1,37 @@
+5.15.0-203-generic
+  Guest path: /home/tang/LEBenchoutput.5.15.0-203-generic.csv
+  The Windows copy was plain CSV text.
+  results/LEBenchoutput.5.15.0-203-generic.csv is that file.
+
+6.8.0-138-generic
+  Guest path: /home/tang/LEBenchoutput.6.8.0-138-generic.csv
+  The Windows copy kept a .csv filename, but the bytes were an Excel workbook.
+  That happens when WeChat or Excel opens the log and saves it again.
+  results/LEBenchoutput.6.8.0-138-generic.csv was written from those cell values,
+  in the same layout as the 5.15 file.
+  The numbers are the workbook values. This is not a byte-for-byte copy of the guest file.
+  If the original file is still on the guest, a later commit should replace this one.
+
+Screenshots
+  5.15.0-203-generic-finished.jpg
+    Guest clock 11月10日 11:02. Whole run 1619.619772826 seconds.
+  6.8.0-138-generic-finished.jpg
+    Guest clock 11月10日 11:49. Whole run 2238.183208525 seconds.
+  Both show the prompt tang@tang-VirtualBox:~/LEBench/TEST_DIR after OS_Eval returned.
+
+  grub-4.4.302-selected.jpg
+    GRUB menu. The highlighted entry is "Ubuntu, with Linux 4.4.302".
+  4.4.302-loading-initial-ramdisk.png
+    After choosing 4.4.302. The screen stays at:
+    "Loading Linux 4.4.302 ..."
+    "Loading initial ramdisk ..."
+  grub-4.15.18-selected.jpg
+    GRUB menu. The highlighted entry is "Ubuntu, with Linux 4.15.18".
+  4.15.18-loading-initial-ramdisk.png
+    After choosing 4.15.18. The screen stays at:
+    "Loading Linux 4.15.18 ..."
+    "Loading initial ramdisk ..."
+
+Not in this commit
+  uname -r screenshots. The kernel name is already on the GRUB line,
+  the "Loading Linux ..." line, and the CSV Test Name row.

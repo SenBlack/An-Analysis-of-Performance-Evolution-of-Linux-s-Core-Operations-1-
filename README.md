@@ -1,7 +1,7 @@
 # CS340 Paper Reproduction
 
-Name: 申伟华  
-Student ID: 1240021926
+Name: 申伟华, 唐诗恒 (TANG SHIHENG)
+Student ID: 1240021926, 1240037734
 
 ## Paper
 
@@ -24,9 +24,17 @@ The original experiments used Ubuntu 16.04 on an HP server with an Intel Xeon E5
 
 I will start with Figure 1, because it is the main result. Running all 36 kernel versions is too much for this course, so I plan to pick a few versions, including 4.0, and a few tests such as `select`, `mmap`, and context switch. Each test should be run at least three times, and I will write down the average. If that works, I can look at one of the 11 changes and see whether turning it off changes the result.
 
-## First week
+## First week (11/1)
 
 This week I created the repository, recorded the paper and the original code commit, and wrote this README. I have not installed a new kernel and I have not run the benchmark yet, so there are no results. Next week I will clone LEBench and try it on the Linux version already installed on the machine.
+
+## Second week (11/9-11/15)
+
+This week we ran LEBench in our Ubuntu 22.04.5 VirtualBox guest. TANG SHIHENG (1240037734) did these runs. The two kernels that boot each have one full run: `5.15.0-203-generic` took 1619.62 seconds, and `6.8.0-138-generic` took 2238.18 seconds. On this machine 6.8 is slower on 41 of 42 tests. The logs, screenshots, and comparison are in `week2/`.
+
+Linux 4.4.302 and 4.15.18 were compiled and installed in this guest. Both stop at `Loading initial ramdisk`, so they have no LEBench results. These two kernels will not be rebuilt in the same virtual machine. Another group member will try them on a different machine.
+
+Each booting kernel has been run once. The report still needs three runs of each, with a mean and a standard deviation. Those repeats are left for a later week.
 
 ## How to run the original code
 
