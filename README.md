@@ -31,11 +31,9 @@ This week I created the repository, recorded the paper and the original code com
 
 ## Second week (11/9-11/15)
 
-This week we ran LEBench in our Ubuntu 22.04.5 VirtualBox guest. TANG SHIHENG (1240037734) did these runs. The two kernels that boot each have one full run: `5.15.0-203-generic` took 1619.62 seconds, and `6.8.0-138-generic` took 2238.18 seconds. On this machine 6.8 is slower on 41 of 42 tests. The logs, screenshots, and comparison are in `week2/`.
+This week we ran LEBench in our Ubuntu 22.04.5 VirtualBox guest. TANG SHIHENG (1240037734) did these runs. Each kernel that boots has three complete runs. The mean wall-clock time is 1629.37 ± 16.23 seconds on `5.15.0-203-generic` and 2150.53 ± 113.56 seconds on `6.8.0-138-generic`. The number after ± is the sample standard deviation. On the mean of the three `kbest` values, 6.8 is slower on 41 of 42 tests. The median ratio is 1.22. The six logs and the full table are in `week2/three-runs/`.
 
 Linux 4.4.302 and 4.15.18 were compiled and installed in this guest. Both stop at `Loading initial ramdisk`, so they have no LEBench results. These two kernels will not be rebuilt in the same virtual machine. Another group member will try them on a different machine.
-
-Each booting kernel has been run once. The report still needs three runs of each, with a mean and a standard deviation. Those repeats are left for a later week.
 
 ## How to run the original code
 

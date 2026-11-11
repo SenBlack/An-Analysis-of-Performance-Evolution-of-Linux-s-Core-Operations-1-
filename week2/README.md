@@ -51,12 +51,14 @@ Linux 4.4.302 and Linux 4.15.18 were compiled and installed in this same guest. 
 | OS | Ubuntu 16.04.6 | Ubuntu 22.04.5 guest | Same |
 | Kernels | Ubuntu mainline 3.0.7 through 4.20.13, baseline 4.0.5 | 4.4.302 and 4.15.18 do not boot; measured 5.15.0-203-generic and 6.8.0-138-generic | The kernels from the paper's range hang in this VM. 5.15 and 6.8 boot |
 | Kernel build | The paper's mainline packages and configs | Ubuntu `generic` kernels, security mitigations left on | The self-built 4.4 and 4.15 kernels do not boot |
-| Runs | Repeated samples inside LEBench, many versions | One `OS_Eval` process per kernel | Shows the direction. The report still needs three runs |
-| Code | LEBench, starting commit in the repository README | `~/LEBench` on the guest. The guest `git rev-parse HEAD` was not saved with these logs | Record the hash on the next run |
+| Runs | Repeated samples inside LEBench, many versions | Three separate `OS_Eval` runs on each kernel that boots | Mean and sample standard deviation are in `three-runs/summary.md` |
+| Code | LEBench commit `6aa7801a107d26e45eb65c7d827c7ea08059a3d3` | Same commit on the guest, at `~/LEBench`. No LEBench source files were changed | The guest `git rev-parse HEAD` matches the starting commit in the repository README |
 
 ## Result
 
-On this guest, 6.8 is slower than 5.15. In the `kbest` column, 41 of 42 rows are higher on 6.8. Leaving out the `ref` and `cpu` calibration rows, 39 of 40 are higher, and the median of those 40 ratios is 1.25. The one lower `kbest` is `select`, at 0.89 times the 5.15 time. The `select` average is 1.09 times the 5.15 average, so that cell is not a speedup. The full table is `results/comparison.md`. Rebuild it with:
+The numbers below are run 1 only. Each booting kernel now has three runs, and the mean ± sample standard deviation is in `three-runs/summary.md`. On those means, 6.8 is still slower on 41 of 42 `kbest` rows. The median ratio is 1.22, and the mean wall-clock times are 1629.37 ± 16.23 seconds and 2150.53 ± 113.56 seconds.
+
+On run 1 alone, 6.8 is slower than 5.15. In the `kbest` column, 41 of 42 rows are higher on 6.8. Leaving out the `ref` and `cpu` calibration rows, 39 of 40 are higher, and the median of those 40 ratios is 1.25. The one lower `kbest` is `select`, at 0.89 times the 5.15 time. The `select` average is 1.09 times the 5.15 average, so that cell is not a speedup. The full table is `results/comparison.md`. Rebuild it with:
 
 ```bash
 python week2/compare_results.py
@@ -77,7 +79,7 @@ Averages move around more than `kbest`. `huge page fault` average is 0.77 times 
 
 The paper's main figure compares Linux 3.0 through 4.20 with Linux 4.0 on a physical server. Both kernels measured here are newer than that range, and the two builds from inside that range do not boot. Figure 1 stays inconclusive on this data.
 
-This week shows a smaller claim. On one virtual machine, with Ubuntu's own kernels and one run each, 6.8.0-138-generic is slower than 5.15.0-203-generic on almost every LEBench row. The extra cost is largest for `mmap` and for `fork` of a larger process.
+This week shows a smaller claim. On one virtual machine, with Ubuntu's own kernels and three runs each, 6.8.0-138-generic is slower than 5.15.0-203-generic on 41 of 42 `kbest` rows. The extra cost is largest for `mmap` and for `fork` of a larger process. `select` is the one row whose three-run mean is lower on 6.8, at 0.91 times the 5.15 mean.
 
 ## Files
 
@@ -91,9 +93,10 @@ This week shows a smaller claim. On one virtual machine, with Ubuntu's own kerne
 - `screenshots/4.4.302-loading-initial-ramdisk.png` — 4.4.302 stopped at `Loading initial ramdisk`
 - `screenshots/grub-4.15.18-selected.jpg` — GRUB, 4.15.18 selected
 - `screenshots/4.15.18-loading-initial-ramdisk.png` — 4.15.18 stopped at `Loading initial ramdisk`
+- `three-runs/` — six original CSV logs, three per booting kernel, plus `summary.md` and `wallclock.txt`
 
 ## Still open
 
-The course report asks for the mean and standard deviation of at least three runs. These two CSVs are run 1. The next runs should use the same command and the same guest, one kernel at a time.
+The three runs for 5.15 and 6.8 are done. The extension is not. The plan is to repeat LEBench on 5.15 with one boot setting changed, `mitigations=off`, and compare it with the three default runs above.
 
 `context siwtch` is the label LEBench prints. The table keeps that spelling so each row matches the CSV.

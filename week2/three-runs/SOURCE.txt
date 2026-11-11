@@ -1,0 +1,35 @@
+These six CSV files are the original LEBench text from the Ubuntu 22.04.5 guest.
+Each file is one complete OS_Eval run. Do not open them in Excel.
+
+5.15.0-203-generic-run1.csv
+  Guest desktop: /home/tang/桌面/LEBenchoutput.5.15.0-203-generic.csv
+  Copied to ~/lebench-runs on 2026-11-11.
+  Wall clock 1619.619772826 seconds. Guest clock 11:02 on 2026-11-10.
+
+5.15.0-203-generic-run2.csv
+  Saved from /home/tang/LEBenchoutput.5.15.0-203-generic.csv after the second run.
+  Wall clock 1648.102539386 seconds. Finished 2026-11-11 00:39 guest time.
+
+5.15.0-203-generic-run3.csv
+  Saved after the third run.
+  Wall clock 1620.395982821 seconds. Finished 2026-11-11 12:28 guest time.
+
+6.8.0-138-generic-run1.csv
+  Guest desktop: /home/tang/桌面/LEBenchoutput.6.8.0-138-generic.csv
+  Wall clock 2238.183208525 seconds. Guest clock 11:49 on 2026-11-10.
+
+6.8.0-138-generic-run2.csv
+  Saved after the second 6.8 run.
+  Wall clock 2191.169047625 seconds. Finished 2026-11-11 13:18 guest time.
+
+6.8.0-138-generic-run3.csv
+  Saved after the third 6.8 run.
+  Wall clock 2022.243163176 seconds. Finished 2026-11-11 13:57 guest time.
+
+summary.md is the mean and sample standard deviation of these six files.
+wallclock.txt is the six total times above.
+The archive moved to the Mac was lebench-runs.tar.gz, 5525 bytes.
+SHA-256: c855d5b8c8bf96b694f251553cd73dce9bb2e2605944210495f9774bf3ecfa70
+
+The one-run CSV files already in week2/results/ are a cleaned layout of run 1.
+Keep both copies. Do not overwrite one with the other.
