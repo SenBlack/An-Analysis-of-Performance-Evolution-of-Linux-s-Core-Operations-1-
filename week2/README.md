@@ -94,6 +94,7 @@ This week shows a smaller claim. On one virtual machine, with Ubuntu's own kerne
 - `screenshots/grub-4.15.18-selected.jpg` — GRUB, 4.15.18 selected
 - `screenshots/4.15.18-loading-initial-ramdisk.png` — 4.15.18 stopped at `Loading initial ramdisk`
 - `three-runs/` — six original CSV logs, three per booting kernel, plus `summary.md` and `wallclock.txt`
+- `three_run_summary.py` — rebuilds `three-runs/summary.md` from those six CSV files and `wallclock.txt`
 
 ## Still open
 

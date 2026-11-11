@@ -5,6 +5,8 @@ The value after ± is the sample standard deviation, divided by n-1.
 Times in the CSV files are seconds. This table uses microseconds.
 Ratio = 6.8 mean / 5.15 mean. A ratio above 1 means 6.8 is slower.
 
+Regenerate this file with `python week2/three_run_summary.py`.
+
 ## Wall clock
 
 | Kernel | Run 1 (s) | Run 2 (s) | Run 3 (s) | Mean (s) | Sample standard deviation (s) |
@@ -58,4 +60,3 @@ Ratio = 6.8 mean / 5.15 mean. A ratio above 1 means 6.8 is slower.
 | select big | 80.201 | 2.323 | 87.790 | 1.122 | 1.095 | 179.745 | 163.816 | 0.911 |
 | poll big | 82.534 | 6.826 | 88.983 | 2.474 | 1.078 | 193.157 | 169.097 | 0.875 |
 | epoll big | 83.276 | 1.810 | 90.487 | 1.996 | 1.087 | 212.273 | 172.952 | 0.815 |
-

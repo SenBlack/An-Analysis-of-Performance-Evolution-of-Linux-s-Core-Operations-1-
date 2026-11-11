@@ -35,14 +35,21 @@ This week we ran LEBench in our Ubuntu 22.04.5 VirtualBox guest. TANG SHIHENG (1
 
 Linux 4.4.302 and 4.15.18 were compiled and installed in this guest. Both stop at `Loading initial ramdisk`, so they have no LEBench results. These two kernels will not be rebuilt in the same virtual machine. Another group member will try them on a different machine.
 
-## How to run the original code
+## How to run LEBench on our guest
 
-From the original README:
+The guest is Ubuntu 22.04.5 in VirtualBox. From the LEBench directory:
 
-1. Clone https://github.com/LinuxPerfStudy/LEBench
-2. Run `python get_kern.py`
-3. Run `sudo python run.py`
+```bash
+cd ~/LEBench/TEST_DIR
+sudo LEBENCH_DIR=$HOME/LEBench ./OS_Eval 0 "$(uname -r)"
+```
 
-The results are CSV files in the LEBench folder. More detail is in `EXPERIMENTS.md` in that repository.
+`OS_Eval` segfaults when `LEBENCH_DIR` is unset. With `LEBENCH_DIR=$HOME/LEBench` and no trailing slash, the log is written to `/home/tang/LEBenchoutput.<kernel>.csv`. Copy that file before starting another run of the same kernel, because the next run overwrites it.
 
-I have not modified any original files.
+Do not run `sudo python run.py` on this guest. That script changes GRUB and reboots. It can boot `4.4.302` or `4.15.18`, and both of those stop at `Loading initial ramdisk`.
+
+The LEBench source is https://github.com/LinuxPerfStudy/LEBench at commit `6aa7801a107d26e45eb65c7d827c7ea08059a3d3`. We have not modified those source files. Rebuild the three-run table from the six CSV logs with:
+
+```bash
+python week2/three_run_summary.py
+```
