@@ -1,8 +1,8 @@
 # CS340 Paper Reproduction
 
-Name: 申伟华, 唐诗恒
+Name: 申伟华, 唐诗恒, 吴浩
 
-Student ID: 1240021926, 1240037734
+Student ID: 1240021926, 1240037734, 1240025700
 
 ## Paper
 
@@ -40,6 +40,16 @@ Linux 4.4.302 and 4.15.18 were compiled and installed in this guest. Both stop a
 This week we finished the one-factor extension. The kernel stayed `5.15.0-203-generic`. The only change was the boot parameter `mitigations=off`, added in GRUB for that boot. All three runs finished before the guest was rebooted. The mean wall-clock time is 1383.43 ± 18.02 seconds, compared with 1629.37 ± 16.23 seconds for the three default 5.15 runs from week 2. On the mean of the three `kbest` values, turning mitigations off is faster on 36 of 42 tests. The median ratio is 0.81. The logs and the full table are in `week3/mitigations-off/`.
 
 This supports the claim that security mitigations slow these core operations, on this VirtualBox guest and for this one boot parameter. It does not reproduce the paper's 11 separate changes. Figure 1 is still open, because 4.4.302 and 4.15.18 still do not boot here.
+
+---
+
+吴浩 (1240025700) checked the logs already stored in the repository. The check covers the six week 2 CSV files and the three week 3 `mitigations=off` files. It confirms each kernel label, checks that the `kbest` test names and their order match, checks that `cmdline.txt` records `mitigations=off`, and checks that `wallclock.txt` has three times. It also records a SHA-256 fingerprint for each CSV. This is not a new LEBench run. From the repository root:
+
+```bash
+python week3/reproducibility_check.py
+```
+
+The script is `week3/reproducibility_check.py`. The report is `week3/reproducibility_report.md`.
 
 ## How to run LEBench on our guest
 
