@@ -95,7 +95,8 @@ All related artifacts are organized under `week4/`. This folder includes `reprod
 4.0:
 
 <img width="418" height="403" alt="截屏2026-11-26 23 08 30" src="https://github.com/user-attachments/assets/a7554960-1604-4a2d-9bf2-afd5d3c26fee" />
-<img width="428" height="450" alt="截屏2026-11-26 23 04 57" src="https://github.com/user-attachments/assets/7071b6c9-12f2-4dc5-a497-4e4998a418f1" />
+<img width="396" height="445" alt="截屏2026-11-26 23 53 10" src="https://github.com/user-attachments/assets/b2d3649c-3f48-4f97-9607-1378a64823fb" />
+
 
 
 ## How to run LEBench on our guest
