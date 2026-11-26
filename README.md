@@ -1,8 +1,8 @@
 # CS340 Paper Reproduction
 
-Name: 申伟华, 唐诗恒, 吴浩
+Name: 申伟华, 唐诗恒, 吴浩，范博睿
 
-Student ID: 1240021926, 1240037734, 1240025700
+Student ID: 1240021926, 1240037734, 1240025700，1240021391
 
 ## Paper
 
@@ -50,6 +50,18 @@ python week3/reproducibility_check.py
 ```
 
 The script is `week3/reproducibility_check.py`. The report is `week3/reproducibility_report.md`.
+
+## Fourth week (11/23-11/29)
+
+范博睿（1240021391）is responsible for this week's work. This week we focused on comparing system call latency between Linux 4.0.5 and Linux 4.15.0-112, using an Ubuntu virtual machine running inside UTM on Apple M3 hardware. We executed and documented this part of the reproduction work. We followed the LEBench workflow from the original SOSP 2019 paper and ran the OS_Eval benchmark on both kernel versions separately. Each kernel produces raw measurement data saved as CSV files, which record test names, kbest latency, average latency, maximum latency and sample counts.
+
+We implemented one supporting Python scripts. `compare4.0vs4.15.py` loads the CSV results from the two kernels, aligns the benchmark tests, extracts kbest latency and calculates the ratio defined as latency_4.15 / latency_4.0.5. A ratio greater than 1 means the operation becomes slower in 4.15, while a ratio below 1 indicates performance improvement. 
+
+From our measured results, all fork-family operations including fork, big fork and huge fork show higher latency on Linux 4.15. This matches the paper’s argument that new security mitigations and additional memory accounting logic introduce runtime overhead. In contrast, thread creation shows a noticeable speedup, and lightweight system calls such as getpid also gain minor latency reduction from kernel-side optimizations. Context switch and socket primitives like send and recv have mixed results.
+
+All related artifacts are organized under `week4/`. This folder includes `reproduction-setup.md` with all shell commands for environment setup and benchmark execution, the comparison table and interpretation in `analysis/comparison_table.md`.
+
+
 
 ## How to run LEBench on our guest
 
