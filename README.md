@@ -66,39 +66,42 @@ All related artifacts are organized under `week4/`. This folder includes `reprod
 4.15:
 
 <img width="515" height="405" alt="截屏2026-11-26 23 04 16" src="https://github.com/user-attachments/assets/2ba0d63a-75e0-42ed-9b76-727f0f01ec6c" />
-
-
 <img width="511" height="459" alt="截屏2026-11-26 23 04 30" src="https://github.com/user-attachments/assets/de168071-6f64-4cbc-ae0c-e3a18c958385" />
 
 4.0:
-
 
 <img width="418" height="403" alt="截屏2026-11-26 23 08 30" src="https://github.com/user-attachments/assets/a7554960-1604-4a2d-9bf2-afd5d3c26fee" />
 <img width="428" height="450" alt="截屏2026-11-26 23 04 57" src="https://github.com/user-attachments/assets/7071b6c9-12f2-4dc5-a497-4e4998a418f1" />
 
 
 ## How to run LEBench on our guest
+
 This experiment runs on an Ubuntu virtual machine hosted by UTM on Apple M3.
 We need to boot into the target kernel (4.0.5 or 4.15.0-112) before executing the benchmark.
 
+
+Check basic environment information
 ```bash
-# Check basic environment information
 uname -a
 lsb_release -a
 gcc --version
-
-# Clone LEBench and check out the fixed commit
+```
+Clone LEBench and check out the fixed commit
+```bash
 cd ~
 git clone https://github.com/LinuxPerfStudy/LEBench.git
 cd LEBench
 git checkout 6aa7801a107d26e45eb65c7d827c7ea08059a3d3
 export LEBENCH_DIR="$PWD/"
 echo "$LEBENCH_DIR"
+```
 
-# Compile the benchmark program
+Compile the benchmark program
+```bash
 make -C TEST_DIR
-
-# Run OS_Eval for 3 repeated trials
+```
+Run OS_Eval for 3 repeated trials
+```bash
 ./TEST_DIR/OS_Eval 0 run1
 mv output.run1.csv ~/lebench-run1.csv
 
@@ -107,7 +110,10 @@ mv output.run2.csv ~/lebench-run2.csv
 
 ./TEST_DIR/OS_Eval 0 run3
 mv output.run3.csv ~/lebench-run3.csv
-
+```
+Presenting results &&
+Each row in the CSV represents a test—for example, select, small mmap, or context switch.
+```bash
 ls -l ~/lebench-run*.csv
 head -n 40 ~/lebench-run1.csv
 ```
@@ -117,6 +123,6 @@ head -n 40 ~/lebench-run1.csv
 The output CSV file stores test name, kbest latency, average latency, max latency and sample count.
 Remember to rename and back up the CSV before running the benchmark again, otherwise the new run will overwrite the old file.
 
-After finishing all 3 runs on one kernel, reboot and switch to the other kernel version, repeat the commands above. Rename the collected CSV files to `lebench-4.0.5.csv` and `lebench-4.15.csv` for distinction.
+After finishing all 3 runs on one kernel, reboot and switch to the other kernel version, repeat the commands above. 
 
 The LEBench source code is from [https://github.com/LinuxPerfStudy/LEBench](https://github.com/LinuxPerfStudy/LEBench) at commit `6aa7801a107d26e45eb65c7d827c7ea08059a3d3`. 
