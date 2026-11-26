@@ -62,11 +62,35 @@ From our measured results, all fork-family operations including fork, big fork a
 All related artifacts are organized under `week4/`. This folder includes `reproduction-setup.md` with all shell commands for environment setup and benchmark execution, the comparison table and interpretation in `analysis/comparison_table.md`.
 
 ## Our results
+| Test Name | Linux 4.0.5 kbest (s) | Linux 4.15.0-112 kbest (s) | Ratio (4.15 / 4.0.5) | Observation |
+| --- | --- | --- | --- | --- |
+| ref | 0.000000120 | 0.000000050 | 0.417 | Faster in 4.15 |
+| cpu | 0.004292636 | 0.004284857 | 0.998 | Almost unchanged |
+| getpid | 0.000000170 | 0.000000120 | 0.706 | Faster in 4.15 |
+| context switch | 0.000002004 | 0.000002989 | 1.492 | Slower in 4.15 |
+| send | 0.000002690 | 0.000002500 | 0.929 | Slightly faster |
+| recv | 0.000002410 | 0.000003200 | 1.328 | Slower in 4.15 |
+| big send | 0.000005501 | 0.000005342 | 0.971 | Nearly unchanged |
+| big recv | 0.000004258 | 0.000004590 | 1.078 | Slightly slower |
+| fork | 0.000029205 | 0.000045183 | 1.547 | Clearly slower |
+| fork (child) | 0.000046356 | 0.000076054 | 1.641 | Clearly slower |
+| thr create | 0.000002274 | 0.000011833 | 5.204 | Much slower |
+| thr create (child) | 0.000004899 | 0.000015361 | 3.135 | Much slower |
+| big fork | 0.000483440 | 0.000613354 | 1.269 | Slower |
+| big fork (child) | 0.000598637 | 0.000638854 | 1.067 | Slightly slower |
+| huge fork | 0.001202813 | 0.001641392 | 1.365 | Slower |
+| huge fork (child) | 0.001248663 | 0.001733251 | 1.388 | Slower |
+| small write | 0.000000571 | 0.000000671 | 1.175 | Slightly slower |
+| small read | 0.000000270 | 0.000000280 | 1.037 | Almost same |
+| small mmap | 0.000000310 | 0.000000430 | 1.387 | Slower |
+
+> Ratio = latency(4.15) / latency(4.0.5). Ratio > 1 means slower on Linux 4.15; Ratio < 1 means faster on Linux 4.15.
 
 4.15:
 
-<img width="515" height="405" alt="截屏2026-11-26 23 04 16" src="https://github.com/user-attachments/assets/2ba0d63a-75e0-42ed-9b76-727f0f01ec6c" />
-<img width="511" height="459" alt="截屏2026-11-26 23 04 30" src="https://github.com/user-attachments/assets/de168071-6f64-4cbc-ae0c-e3a18c958385" />
+
+<img width="402" height="389" alt="截屏2026-11-26 23 49 04" src="https://github.com/user-attachments/assets/1dadc778-aed5-4912-872a-75d8c4481c93" />
+<img width="402" height="445" alt="截屏2026-11-26 23 49 16" src="https://github.com/user-attachments/assets/4b82f772-a112-4ffa-9433-27406f1003a5" />
 
 4.0:
 
